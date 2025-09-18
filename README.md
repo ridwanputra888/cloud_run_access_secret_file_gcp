@@ -57,6 +57,7 @@ gcloud run deploy cloudrun-secret-test \
   --region us-central1 \
   --allow-unauthenticated \
   --set-secrets /secrets/my-secret.json=my_secret_file:latest
+  --set-env-vars SECRET_PATH=/secrets/my-secret.json
 ```
 
 ---
