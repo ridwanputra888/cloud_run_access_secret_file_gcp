@@ -9,7 +9,7 @@ def hello():
 
 @app.route("/check-secret")
 def check_secret():
-    secret_path = os.environ.get("SECRET_PATH", "/secrets/my-secret.json")
+    secret_path = os.environ.get("SECRET_PATH")
 
     try:
         with open(secret_path, "r") as f:
