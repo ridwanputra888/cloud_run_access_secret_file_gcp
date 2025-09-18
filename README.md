@@ -8,10 +8,15 @@ Proyek ini mendemonstrasikan cara menggunakan **Google Cloud Secret Manager** un
 
 Build dan jalankan container dengan mounting file `my-secret.json`:
 
+
 ```bash
+
+ docker build -t cloudrun-secret-test .
+
 docker run -it --rm \
   -p 9090:8080 \
   -v $(pwd)/my-secret.json:/secrets/my-secret.json \
+  -e SECRET_PATH=/secrets/my-secret.json \
   cloudrun-secret-test
 ```
 
@@ -56,7 +61,7 @@ gcloud run deploy cloudrun-secret-test \
   --image {{region}}-docker.pkg.dev/{{project_id}}/test-secret/cloudrun-secret-test \
   --region us-central1 \
   --allow-unauthenticated \
-  --set-secrets /secrets/my-secret.json=my_secret_file:latest
+  --set-secrets /secrets/my-secret.json=my_secret_file:latest \
   --set-env-vars SECRET_PATH=/secrets/my-secret.json
 ```
 
